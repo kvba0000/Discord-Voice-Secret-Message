@@ -8,7 +8,9 @@ Voice Secret Mesage is example of a script for Discord that allows you to send m
 ## ❓ How does it work?
 It uses new feature on discord called Voice Messages, basically what it does is sends audio file that works as voice message (file.mp3) to discord servers and then sends message with this voice message, the catch is - the WAVEFORM you send is actually modified. Instead of sending audio's waveform it sends one with secret message encoded to format that discord can understand.  
 ## 📺 Preview
-<video src='preview.mp4' width=400></video>
+
+https://user-images.githubusercontent.com/47297843/232315204-29cb1cb6-e741-4a2e-96e5-e227125da408.mp4
+
 ## ▶️ How to use it?
 1. Download/clone the script
 2. Install requirements
