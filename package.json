@@ -6,7 +6,7 @@
   },
   "main": "voice.js",
   "scripts": {
-    "start": "echo \"RUN node voice.js FOR MORE INFO. THIS SCRIPT IS DEPRECATED\" && exit 1"
+    "start": "echo \"RUN node voice FOR MORE INFO. THIS SCRIPT IS DEPRECATED\" && exit 1"
   },
   "type": "module"
 }
