@@ -1,4 +1,4 @@
-# 🌊 Voice Secret Mesage
+# 🌊 Voice Secret Message
 ###### ⚠️ TESTED ON WINDOWS 11, BUT SHOULD WORK ON OTHER OS
 ## ⚠️ WARNING
 <b>THIS SCRIPT IS NOT MEANT TO BE USED FOR MALICIOUS PURPOSES, I AM NOT RESPONSIBLE FOR ANYTHING YOU DO WITH THIS SCRIPT.</b>
@@ -29,7 +29,7 @@ node voice [arguments]
 |  | --message | Message you want to send <b>(ommited in decode mode)</b> | `-start --message Hello World` | ❌ |
 | | --decode | Turns on decode mode, stays in encode mode if didn't provide required arguments | `-start --decode [args]` | ❌ |
 | | --link | Link of a voice message you want to decode | `-start --decode --link https://discord.com/channels/123456789/123456789/123456789` | <b>(only in decode mode)</b> |
-| -config |  | Starts configuration script | -config |  |
+| -config |  | Starts configuration script | `-config` |  |
 
 ## 📝 Configuration
 This section is for people who want to configure the script without using script (which is not recommended).
