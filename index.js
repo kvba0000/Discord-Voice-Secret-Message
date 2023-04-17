@@ -2,7 +2,7 @@ import { existsSync } from "fs";
 import config from "./config.js";
 import {fileURLToPath} from 'url';
 import {basename} from 'path'
-import { checkToken, promptQ, checkChannel, encodeMessage, decodeMessage, uploadFile, sendMessage, colors, wait } from "./helper.js";
+import { checkToken, promptQ, checkChannel, encodeMessage, tryDecodeMessage, uploadFile, sendMessage, colors, wait, checkMessage } from "./helper.js";
 
 /**
  * Main function
@@ -20,6 +20,41 @@ const main = async () => {
     const [isValidToken, tokenData] = await checkToken(config.token);
     if(!isValidToken) return console.log(`${colors.fg.red}[-] Invalid token, set your token if you didn't yet.${colors.reset}`);
 
+    if(process.argv.indexOf("--decode") != -1 && process.argv.indexOf("--link") != -1) {
+        const link = process.argv[process.argv.indexOf("--link")+1];
+
+        //check if link's regex matches: https://discord.com/channels/ID/ID/ID
+        if(!link.match(/https:\/\/discord.com\/channels\/\d{17,19}\/\d{17,19}\/\d{17,19}/)) return console.log(`${colors.fg.red}[-] Invalid link, please check your link.${colors.reset}`);
+
+        // Get message from link and check if it's valid
+        const [guildID, channelID, messageID] = link.split("/").slice(-3);
+        const [isValidMsg, msgData] = await checkMessage(channelID, messageID);
+        if(!isValidMsg) return console.log(`${colors.fg.red}[-] Invalid message, please check your link.${colors.reset}`);
+
+        if(
+            !msgData.attachments ||
+            msgData.attachments.length == 0
+        ) return console.log(`${colors.fg.red}[-] There's no hidden text in this message, please check your link.${colors.reset}`);
+
+        // Try to decode message
+        const attachment = msgData.attachments[0],
+        waveform = attachment.waveform,
+        decodedMessage = await tryDecodeMessage(waveform).catch(err => {
+            console.log(`${colors.fg.red}[-] Error while decoding message, probably message doesn't contain any hidden text, please try again. \n`, err, colors.reset);
+            return null;
+        });
+
+        if(decodedMessage == null) return;
+
+        console.log([
+            `${colors.fg.blue}[🌊] Message decoded successfully! Message:`,
+            colors.bright + decodedMessage + colors.reset
+        ].join("\n"));
+
+        await wait(5000);
+
+        return;
+    }
 
     // Providing channel ID
     let channelID = "", channelData = null, validChannel = false;

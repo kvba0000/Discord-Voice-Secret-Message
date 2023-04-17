@@ -2,7 +2,6 @@
 ###### ⚠️ TESTED ON WINDOWS 11, BUT SHOULD WORK ON OTHER OS
 ## ⚠️ WARNING
 <b>THIS SCRIPT IS NOT MEANT TO BE USED FOR MALICIOUS PURPOSES, I AM NOT RESPONSIBLE FOR ANYTHING YOU DO WITH THIS SCRIPT.</b>
-(also I haven't implemented decoding message created from this script, so you can't decode message yet, but it should be in near future)
 ## ❓ What's this?
 Voice Secret Mesage is example of a script for Discord that allows you to send messages secretly without inexperienced people to notice it.  
 ## ❓ How does it work?
@@ -25,9 +24,11 @@ node voice [arguments]
 ## 📝 Arguments
 | Argument | Subargument | Description | Example | Required |
 | -------- | ----------- | ----------- | ------- | -------- |
-| -start |  | Starts the script, if no argument below provided, script will ask you in fly. | -start |  |
-|  | --channelID | ID of a channel you want to send message to | -start --channelID 123456789 | ❌ |
-|  | --message | Message you want to send | -start --message "Hello World" | ❌ |
+| -start |  | Starts the script, if no argument below provided, script will ask you in fly. <b>(defaults to encode mode)</b> | `-start` |  |
+|  | --channelID | ID of a channel you want to send message to <b>(ommited in decode mode)</b> | `-start --channelID 123456789` | ❌ |
+|  | --message | Message you want to send <b>(ommited in decode mode)</b> | `-start --message Hello World` | ❌ |
+| | --decode | Turns on decode mode, stays in encode mode if didn't provide required arguments | `-start --decode [args]` | ❌ |
+| | --link | Link of a voice message you want to decode | `-start --decode --link https://discord.com/channels/123456789/123456789/123456789` | <b>(only in decode mode)</b> |
 | -config |  | Starts configuration script | -config |  |
 
 ## 📝 Configuration
@@ -53,6 +54,10 @@ This section is for people who want to configure the script without using script
 ### ❓ Can I use your project in my project?
 Yes, you can use this project in your bot/project, but you have to credit me and link to this repository. It would mean a lot to me.
 
+## 📰 Credits
+- [discord.js-selfbot-v13](https://github.com/aiko-chan-ai/discord.js-selfbot-v13/):
+    - [message fetching function](https://github.com/aiko-chan-ai/discord.js-selfbot-v13/blob/9c9f573dc102db3c0a4adbc2e5f678b0c2bab36d/src/managers/MessageManager.js#L273)
+
 ## ⚠️ Issues
 <b>If you have any issues with the script, please create an issue on GitHub.</b>
 
@@ -60,4 +65,5 @@ Yes, you can use this project in your bot/project, but you have to credit me and
 ### 📝 How is waveform stored?
 Waveform is just a base64 encoded hex which includes how high and low the sound is at certain time. This way I can put any data I want into it and it will be sent as a voice message's waveform. (I'm not going to explain how I did it, because it's not that important, but if you want to know, you can ask me on dm's, links are on my profile)
 ### 📝 How is message encoded?
-To make message less obvious I encoded message the way the waveform is stored but at the beginning of it I put empty space (0x00) so it will show up as empty space in waveform, I'm planning to add more encodings/obfuscation in the future.
+To make message less obvious I encoded message the way the waveform is stored but at the beginning and ending of it I put random data, message itself before being turn into base64 is hex reversed which makes every bit of data moved to the respecive place at the end, example: `00 11 22` turns into `22 11 00`, I'm planning to add more encodings/obfuscation in the future.
+<b>⚠️ Messages encoded with different script versions might not be decoded properly (due to changing obfuscation methods), always remember to check if you have correct version!</b>

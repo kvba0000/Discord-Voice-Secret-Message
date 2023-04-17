@@ -70,6 +70,8 @@ scripts.start = {
     args: [
         {"name": "--channelID", "description": "The channel ID to send the message to", "required": false},
         {"name": "--message", "description": "The message to send", "required": false},
+        {"name": "--decode", "description": "Turns script into decode mode", "required": false},
+        {"name": "--link", "description": "Link for the message you want to decode (ommited if encode mode, required by decode mode)", "required": false},
     ],
     run: () => {
         runScript("index", args);
