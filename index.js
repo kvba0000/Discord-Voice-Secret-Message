@@ -24,7 +24,7 @@ const main = async () => {
         const link = process.argv[process.argv.indexOf("--link")+1];
 
         //check if link's regex matches: https://discord.com/channels/ID/ID/ID
-        if(!link.match(/https:\/\/discord.com\/channels\/\d{17,19}\/\d{17,19}\/\d{17,19}/)) return console.log(`${colors.fg.red}[-] Invalid link, please check your link.${colors.reset}`);
+        if(!link.match(/https:\/\/discord.com\/channels\/(\d{17,19}|@me)\/\d{17,19}\/\d{17,19}/)) return console.log(`${colors.fg.red}[-] Invalid link, please check your link.${colors.reset}`);
 
         // Get message from link and check if it's valid
         const [guildID, channelID, messageID] = link.split("/").slice(-3);
