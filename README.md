@@ -1,6 +1,6 @@
 # 🌊 Voice Secret Message
 ###### ⚠️ TESTED ON WINDOWS 11, BUT SHOULD WORK ON OTHER OS
-# 🛑 I'M NOT ADDING FEATURES FOR THIS CHECKER
+# 🛑 I'M NOT ADDING FEATURES FOR THIS PROJECT
 As I don't have much time I can't put more features to this project as well as some other ones. I'll try to keep it working as long as it is physically possible though.  
 Pull requests and Bug reports are welcome!
 ## ⚠️ WARNING
